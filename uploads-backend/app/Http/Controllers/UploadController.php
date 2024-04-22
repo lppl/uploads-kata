@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use http\Exception\RuntimeException;
+use \RuntimeException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class Uploads extends Controller
+class UploadController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        throw new RuntimeException("Not implemented");
+        $uploads = DB::table('uploads')->limit(10)->get();
+
+        dump($uploads);
+        return response()->json($uploads);
     }
 
     /**
@@ -25,6 +29,9 @@ class Uploads extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * @param Request $request
+     * @param $var
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -36,7 +43,9 @@ class Uploads extends Controller
      */
     public function show(string $id)
     {
-        throw new RuntimeException("Not implemented");
+        $uploads = DB::table('uploads')->where('id', $id)->get();
+
+        return response()->json($uploads);
     }
 
     /**
@@ -60,6 +69,8 @@ class Uploads extends Controller
      */
     public function destroy(string $id)
     {
-        throw new RuntimeException("Not implemented");
+        $uploads = DB::table('uploads')->where('id', $id)->get();
+
+        return response()->json($uploads);
     }
 }
