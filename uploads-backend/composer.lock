@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "da9b7a1dc1dd923105198c572cc7df8d",
+    "content-hash": "6383532f1875a2a8b269d4031215d0a5",
     "packages": [
         {
             "name": "brick/math",
@@ -5999,6 +5999,63 @@
                 "source": "https://github.com/laravel/sail"
             },
             "time": "2024-03-20T20:09:31+00:00"
+        },
+        {
+            "name": "lendable/composer-license-checker",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Lendable/composer-license-checker.git",
+                "reference": "b76c26cb4691b12377ec245112af4a96fef9a73d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Lendable/composer-license-checker/zipball/b76c26cb4691b12377ec245112af4a96fef9a73d",
+                "reference": "b76c26cb4691b12377ec245112af4a96fef9a73d",
+                "shasum": ""
+            },
+            "require": {
+                "composer-runtime-api": "^2.2",
+                "php": "~8.2.0 || ~8.3.0",
+                "symfony/console": "^5.4 || ^6.0 || ^7.0",
+                "symfony/process": "^5.4 || ^6.0 || ^7.0"
+            },
+            "require-dev": {
+                "ergebnis/composer-normalize": "^2.42.0",
+                "php-cs-fixer/shim": "^3.51.0",
+                "phpstan/phpstan": "^1.10.59",
+                "phpstan/phpstan-deprecation-rules": "^1.1.4",
+                "phpstan/phpstan-phpunit": "^1.3.16",
+                "phpstan/phpstan-strict-rules": "^1.5.2",
+                "phpunit/phpunit": "^11.0.4",
+                "rector/rector": "^1.0.1",
+                "symfony/filesystem": "^6.2"
+            },
+            "bin": [
+                "bin/composer-license-checker"
+            ],
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "Lendable\\ComposerLicenseChecker\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lendable Ltd",
+                    "email": "contact@lendable.co.uk"
+                }
+            ],
+            "description": "Composer license checker",
+            "support": {
+                "issues": "https://github.com/Lendable/composer-license-checker/issues",
+                "source": "https://github.com/Lendable/composer-license-checker/tree/1.2.0"
+            },
+            "time": "2024-03-02T23:39:40+00:00"
         },
         {
             "name": "mockery/mockery",
