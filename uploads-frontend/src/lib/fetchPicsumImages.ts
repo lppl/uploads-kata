@@ -25,6 +25,10 @@ export async function fetchImages({
       thumbSrc: `https://picsum.photos/id/${image.id}/200/200`,
       downloadUrl: image.download_url,
       temperature: `${(Math.random() * 10 + 10).toFixed(0)}℃`,
+      fileSize: `${(Math.random() * 5).toFixed(2)}MB`,
+      width: image.width,
+      height: image.height,
+      extension: ".jpg",
     };
   });
 }

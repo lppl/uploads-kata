@@ -7,20 +7,23 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table.tsx";
-import PropTypes from "prop-types";
 import { Button, buttonVariants } from "@/components/ui/button.tsx";
 import { Download, Trash2 } from "lucide-react";
 import { cn } from "@/lib/utils.ts";
+import * as PropTypes from "prop-types";
 
 const propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      userEmail: PropTypes.string.isRequired,
       userName: PropTypes.string.isRequired,
       thumbSrc: PropTypes.string.isRequired,
       downloadUrl: PropTypes.string.isRequired,
       fileName: PropTypes.string.isRequired,
       temperature: PropTypes.string.isRequired,
+      extension: PropTypes.string.isRequired,
+      width: PropTypes.number.isRequired,
+      height: PropTypes.number.isRequired,
+      fileSize: PropTypes.string.isRequired,
     }).isRequired,
   ).isRequired,
 };
@@ -31,53 +34,56 @@ export type UploadListProps = PropTypes.InferProps<typeof propTypes>;
 
 export function UploadList(props: UploadListProps): JSX.Element {
   return (
-    <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
-      <TableHeader>
-        <TableRow>
-          <TableHead></TableHead>
-          <TableHead>User</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead>Amount</TableHead>
-        </TableRow>
-      </TableHeader>
-      <TableBody>
-        {props.items.map((item) => (
-          <TableRow key={item.downloadUrl}>
-            <TableCell>
-              <img
-                className="size-32"
-                src={item.thumbSrc}
-                alt={item.fileName}
-              />
-            </TableCell>
-            <TableCell className="flex flex-col">
-              <h4 className="text-xl font-semibold tracking-tight">
-                {item.fileName}
-              </h4>
-              <div>
-                <b>user name</b>: {item.userName}
-              </div>
-              <div>
-                <b>user email</b>: {item.userEmail}
-              </div>
-              <div>
-                <b>temperature</b>: {item.temperature ?? "??"}
-              </div>
-            </TableCell>
-            <TableCell></TableCell>
-            <TableCell className="flex flex-col space-y-4">
-              <a className={cn(buttonVariants())} href={item.downloadUrl}>
-                <Download size={16} className="mr-2" /> Download
-              </a>
-              <Button variant="destructive">
-                <Trash2 size={16} className="mr-2" /> Delete
-              </Button>
-            </TableCell>
+    <section>
+      <h3 className="text-3xl">Uploads</h3>
+      <Table className="text-xl">
+        <TableCaption>Your upload.</TableCaption>
+        <TableHeader>
+          <TableRow>
+            <TableHead></TableHead>
+            <TableHead>File summary</TableHead>
+            <TableHead></TableHead>
+            <TableHead>Actions</TableHead>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHeader>
+        <TableBody>
+          {props.items.map((item) => (
+            <TableRow key={item.downloadUrl}>
+              <TableCell>
+                <img
+                  className="size-32"
+                  src={item.thumbSrc}
+                  alt={item.fileName}
+                />
+              </TableCell>
+              <TableCell className="flex flex-col">
+                <div>
+                  <b>user name</b>: {item.userName}
+                </div>
+                <div>
+                  <b>image size</b>: {item.fileSize}
+                </div>
+                <div>
+                  <b>image dimensions</b>: {item.width}x{item.height}
+                </div>
+                <div>
+                  <b>file extension</b>: {item.extension}
+                </div>
+              </TableCell>
+              <TableCell></TableCell>
+              <TableCell className="flex flex-col space-y-4">
+                <a className={cn(buttonVariants())} href={item.downloadUrl}>
+                  <Download size={16} className="mr-2" /> Download
+                </a>
+                <Button variant="destructive">
+                  <Trash2 size={16} className="mr-2" /> Delete
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </section>
   );
 }
 
