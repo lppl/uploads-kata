@@ -18,11 +18,35 @@ import {
 } from "@/components/ui/card";
 import * as React from "react";
 import { UploadFormSchema, useUploadForm } from "@/hooks/useUploadForm.ts";
+import {useConfig} from "@/hooks/useConfig.ts";
 
 export function UploadForm() {
   const form = useUploadForm();
+  const config = useConfig();
 
   function onSubmit(values: UploadFormSchema) {
+    const formData = new FormData();
+    formData.append("user_name", values.userName);
+    formData.append("user_email", values.userEmail);
+    formData.append("file", values.file, values.file.name);
+
+    fetch(config.storeUploadEndpoint, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.text();
+      })
+      .then((data) => {
+        console.log("Post response: ", data);
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+
     console.log(values);
   }
 
